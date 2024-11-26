@@ -4,6 +4,39 @@
 
 A sophisticated cryptocurrency trading platform that combines LSTM-based deep learning with automated trading execution. The system leverages FastAPI for its microservice architecture and Nacos for service discovery, making it both scalable and maintainable.
 
+## project structure
+crypto-quant-trading-system/
+   ├── src/
+   │   ├── data/                  # Data Layer
+   │   │   ├── collectors/       # Data Collectors
+   │   │   ├── processors/      # Data Processors  
+   │   │   └── storage/         # Data Storage
+   │   │
+   │   ├── core/                 # Core Functionality
+   │   │   ├── config/          # Configuration Management
+   │   │   ├── events/          # Event Handling
+   │   │   └── utils/           # Utility Functions
+   │   │
+   │   ├── models/              # Model Layer
+   │   │   ├── lstm/           # LSTM Models
+   │   │   └── evaluation/     # Model Evaluation
+   │   │
+   │   ├── trading/             # Trading Layer
+   │   │   ├── strategy/       # Trading Strategies
+   │   │   ├── execution/      # Trade Execution
+   │   │   └── risk/          # Risk Management
+   │   │
+   │   ├── api/                 # API Layer
+   │   │   ├── routes/         # Route Definitions
+   │   │   └── endpoints/      # API Endpoints
+   │   │
+   │   └── services/            # Services Layer
+   │       ├── nacos/          # Service Registration
+   │       └── monitoring/     # Monitoring Services
+   │
+   ├── tests/                   # Tests Directory
+   ├── docs/                    # Documentation
+   └── scripts/                 # Deployment Scripts
 ## Key Features
 
 ### Machine Learning Components

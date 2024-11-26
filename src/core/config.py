@@ -12,6 +12,12 @@ class Settings(BaseSettings):
     SERVICE_IP: str = "192.168.86.216"
     SERVICE_PORT: int = 8000
     
+    # 新增配置
+    DATABASE_URL: str
+    EXCHANGE_API_KEY: str
+    RISK_LIMITS: dict
+    MODEL_PARAMS: dict
+    
     class Config:
         case_sensitive = True
         env_file = ".env"

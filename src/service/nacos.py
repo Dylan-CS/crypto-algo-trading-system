@@ -17,3 +17,11 @@ class NacosService:
         
     async def heartbeat(self):
         await self.register()
+        
+    async def register_services(self):
+        # 注册主服务
+        await self.register_main_service()
+        # 注册数据收集服务
+        await self.register_data_service()
+        # 注册预测服务
+        await self.register_prediction_service()
