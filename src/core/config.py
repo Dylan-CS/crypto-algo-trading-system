@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings
+from typing import Dict
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Crypto Trading API"
@@ -13,10 +14,19 @@ class Settings(BaseSettings):
     SERVICE_PORT: int = 8000
     
     # 新增配置
-    DATABASE_URL: str
-    EXCHANGE_API_KEY: str
-    RISK_LIMITS: dict
-    MODEL_PARAMS: dict
+    DATABASE_URL: str = "postgresql://user:password@localhost:5432/crypto_trading"
+    EXCHANGE_API_KEY: str = "your_exchange_api_key_here"
+    RISK_LIMITS: Dict = {
+        "max_position": 1000,
+        "max_loss": 100,
+        "max_drawdown": 0.2
+    }
+    MODEL_PARAMS: Dict = {
+        "layers": 4,
+        "units": 50,
+        "dropout": 0.2,
+        "sequence_length": 60
+    }
     
     class Config:
         case_sensitive = True
