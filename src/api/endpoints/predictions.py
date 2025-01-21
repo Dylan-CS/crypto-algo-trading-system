@@ -2,9 +2,11 @@ from fastapi import APIRouter, HTTPException
 from typing import Dict, List
 import numpy as np
 from src.trading.bitcoin_lstm import BitcoinLSTM
+from core.event_publisher import EventPublisher
 
 router = APIRouter()
 model = BitcoinLSTM("data/bitcoin_prices.csv")
+event_publisher = EventPublisher()
 
 @router.get("/predictions", response_model=Dict)
 async def get_predictions():
@@ -20,6 +22,9 @@ async def get_predictions():
         
         # Make predictions
         predictions = model.predict(X[-60:])
+        
+        # Publish an event
+        await event_publisher.publish("predictions_event", str(predictions))
         
         return {
             "status": "success",
