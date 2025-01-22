@@ -39,7 +39,9 @@ crypto-quant-trading-system/
    ├── tests/                   # Tests Directory
    ├── docs/                    # Documentation
    └── scripts/                 # Deployment Scripts
-```## Key Features
+```
+
+## Key Features
 
 ### Machine Learning Components
 - **LSTM Price Prediction**: Advanced neural network architecture with:
