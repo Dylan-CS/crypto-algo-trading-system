@@ -37,6 +37,25 @@ class Settings(BaseSettings):
     GOOGLE_API_KEY: str
     NEWS_SOURCES: List[str] = ["crypto", "blockchain", "bitcoin"]
     
+    # 新增事件总线配置
+    EVENT_BUS_CAPACITY: int = 1000
+    
+    # 新增LSTM配置
+    LSTM_CONFIG: dict = {
+        "sequence_length": 60,
+        "n_features": 1,
+        "layers": 4,
+        "units": 50,
+        "dropout": 0.2
+    }
+    
+    # 新增新闻机器人配置
+    NEWSBOT_CONFIG: dict = {
+        "sentiment_threshold": 0.8,
+        "update_interval": 300,
+        "max_news_age": 86400
+    }
+
     class Config:
         case_sensitive = True
         env_file = ".env"

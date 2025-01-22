@@ -4,41 +4,57 @@
 
 A high-performance cryptocurrency trading system that combines AI-driven analysis with automated execution. Built on a microservice architecture, it features LSTM neural networks for price prediction, real-time market data processing, and advanced risk management capabilities. The platform supports multiple exchanges and includes LLM-powered news sentiment analysis for comprehensive market insights.
 
-## project structure
+## Project Structure
 ```
 crypto-quant-trading-system/
    ├── src/
-   │   ├── api/                 # API Layer
-   │   │   ├── endpoints/       # API Endpoints
-   │   │   └── routes/          # Route Definitions
+   │   ├── api/                      # API Layer
+   │   │   ├── endpoints/            # API Endpoints
+   │   │   ├── routes/               # Route Definitions
+   │   │   └── websocket/            # WebSocket Handlers
    │   │
-   │   ├── core/                # Core Functionality
-   │   │   ├── config/          # Configuration Management
-   │   │   ├── events/          # Event Handling
-   │   │   └── utils/           # Utility Functions
+   │   ├── core/                     # Core Functionality
+   │   │   ├── config/               # Configuration Management
+   │   │   ├── events/               # Event Handling
+   │   │   └── utils/                # Utility Functions
    │   │
-   │   ├── data/                # Data Layer
-   │   │   ├── collectors/      # Data Collectors
-   │   │   ├── processors/      # Data Processors  
-   │   │   └── storage/         # Data Storage
+   │   ├── data/                     # Data Layer
+   │   │   ├── collectors/           # Data Collectors
+   │   │   │   ├── market_data/      # Exchange Market Data
+   │   │   │   └── news_data/        # News & Social Data
+   │   │   ├── processors/           # Data Processors
+   │   │   └── storage/              # Data Storage
    │   │
-   │   ├── models/              # Model Layer
-   │   │   ├── evaluation/      # Model Evaluation
-   │   │   └── lstm/            # LSTM Models
+   │   ├── models/                   # Model Layer
+   │   │   ├── evaluation/           # Model Evaluation
+   │   │   ├── lstm/                 # LSTM Price Models
+   │   │   └── sentiment/            # Sentiment Models
    │   │
-   │   ├── services/            # Services Layer
-   │   │   ├── monitoring/      # Monitoring Services
-   │   │   └── nacos/           # Service Registration
+   │   ├── services/                 # Services Layer
+   │   │   ├── monitoring/           # Monitoring Services
+   │   │   ├── nacos/                # Service Registration
+   │   │   └── newsbot/              # News Analysis Service
+   │   │       ├── llm/              # LLM Integration
+   │   │       ├── sentiment/        # Sentiment Analysis
+   │   │       └── signals/          # Trading Signal Generation
    │   │
-   │   └── trading/             # Trading Layer
-   │       ├── execution/       # Trade Execution
-   │       ├── risk/            # Risk Management
-   │       └── strategy/        # Trading Strategies
-   │       └── newsbot.py       # New addition
+   │   └── trading/                  # Trading Layer
+   │       ├── execution/            # Trade Execution
+   │       │   ├── order_router/     # Smart Order Routing
+   │       │   └── position/         # Position Management
+   │       ├── risk/                 # Risk Management
+   │       │   ├── limits/           # Trading Limits
+   │       │   └── metrics/          # Risk Metrics
+   │       └── strategy/             # Trading Strategies
+   │           ├── arbitrage/        # Arbitrage Strategies
+   │           ├── mean_reversion/   # Mean Reversion
+   │           └── trend/            # Trend Following
    │
-   ├── tests/                   # Tests Directory
-   ├── docs/                    # Documentation
-   └── scripts/                 # Deployment Scripts
+   ├── tests/                        # Tests Directory
+   │   ├── unit/                     # Unit Tests
+   │   └── integration/              # Integration Tests
+   ├── docs/                         # Documentation
+   └── scripts/                      # Deployment Scripts
 ```
 
 ## Key Features
