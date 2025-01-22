@@ -107,107 +107,92 @@ crypto-quant-trading-system/
   - Sentiment-driven trading signals
   - Market impact analysis
 
-## Getting Started
+## Development Setup
 
 ### Prerequisites
 - Python 3.7+
 - Docker & Docker Compose
 - MongoDB
 - Redis (for caching)
-- GPU support (optional, for faster model training)
+- CUDA-compatible GPU (recommended for model training)
 
-## Installation
+### Quick Start
 
-1. **Clone the Repository**
+1. **Clone & Setup**
 ```bash
 git clone https://github.com/yourusername/crypto-quant-trading-system.git
 cd crypto-quant-trading-system
-```
-
-2. **Create Virtual Environment**
-```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: .\venv\Scripts\activate
-```
-
-3. **Install Dependencies**
-```bash
+source venv/bin/activate  # Windows: .\venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## Configuration
+2. **Configuration**
+- Copy `.env.example` to `.env` and configure environment variables
+- Update service configurations in `src/core/config.py`
+- Configure exchange API keys in `config/exchanges.yaml`
 
-1. **Nacos Setup**
-   - Configure Nacos server settings in `src/data/nacos_client.py`
-   - Default Nacos server port: 8848
-   - Set up namespace and authentication if required
-
-2. **LSTM Model Configuration**
-   - Model parameters can be adjusted in `src/trading/bitcoin_lstm.py`
-   - Default configuration:
-     - Sequence length: 60 time steps
-     - 4 LSTM layers with dropout
-     - Adam optimizer with MSE loss
-
-3. **API Settings**
-   - Update FastAPI configurations in `src/core/config.py`
-   - Default API port: 8000
-
-## Usage
-
-1. **Start the Service**
+3. **Launch Services**
 ```bash
-python src/main.py
+docker-compose up -d  # Start infrastructure services
+python src/main.py    # Launch main application
 ```
 
-2. **Access API Documentation**
-   - Swagger UI: `http://localhost:8000/docs`
-   - ReDoc: `http://localhost:8000/redoc`
+## System Configuration
 
-3. **Monitor Trading Performance**
-   - Access monitoring endpoints through the API
-   - Check service health at `/health`
-   - View predictions at `/predictions`
+### Service Discovery
+- **Nacos Configuration**
+  - Server: `localhost:8848` (default)
+  - Namespace: `crypto-trading`
+  - Authentication: JWT-based
 
-## Architecture
+### Model Parameters
+- **LSTM Configuration** (`src/models/lstm/config.py`)
+  ```python
+  SEQUENCE_LENGTH = 60
+  LSTM_UNITS = [50, 50, 50, 50]
+  DROPOUT_RATE = 0.2
+  OPTIMIZER = 'adam'
+  LOSS = 'mse'
+  ```
 
-The system follows a microservice architecture with the following components:
+### LLM & Search API Configuration
+- **Deepseek Configuration** (`src/services/newsbot/llm/config.py`)
+  ```python
+  DEEPSEEK_API_KEY = "your_api_key"
+  DEEPSEEK_MODEL = "deepseek-chat-v3"
+  MAX_TOKENS = 2048
+  TEMPERATURE = 0.7
+  TOP_P = 0.95
+  CONTEXT_WINDOW = 16384  # Maximum context length
+  ```
 
-```
-src/
-├── api/           # API endpoints and dependencies
-├── core/          # Core configurations and events
-├── data/          # Data handling and Nacos client
-└── trading/       # LSTM model and trading logic
-```
+- **Google Search API** (`src/services/newsbot/config.py`)
+  ```python
+  GOOGLE_API_KEY = "your_api_key"
+  GOOGLE_CSE_ID = "your_custom_search_engine_id"
+  SEARCH_QUOTA_PER_DAY = 10000
+  MAX_RESULTS_PER_QUERY = 10
+  REGION = "US"  # Search region
+  ```
 
-## Contributing
-
+### Development Workflow
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create feature branch (`git checkout -b feature/xyz`)
+3. Commit changes (`git commit -m 'Add feature xyz'`)
+4. Push to branch (`git push origin feature/xyz`)
+5. Submit Pull Request
+
+### Code Standards
+- Follow PEP 8 style guide
+- Maintain test coverage >80%
+- Document all public APIs
+- Add type hints to new code
+
+### Contact
+- https://www.linkedin.com/in/dylan-chen-684a52249/
 
 ## License
+MIT License - See LICENSE file for details
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Contact
-
-For questions and support, please contact:
-- Project Maintainer: your-email@example.com
-- Issue Tracker: GitHub Issues
-
-## Acknowledgments
-
-- TensorFlow team for LSTM implementation
-- FastAPI framework developers
-- Nacos team for service discovery
-
-## Support & Community
-- Discord Channel: [Link]
-- Documentation Wiki: [Link]
-- Community Forums: [Link]
-- Regular Webinars: [Schedule]
 
