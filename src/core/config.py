@@ -1,12 +1,12 @@
 from pydantic_settings import BaseSettings
-from typing import Dict
+from typing import Dict, List
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Crypto Trading API"
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api/v1"
     
-    # Nacos配置
+    # Nacos Configuration
     NACOS_SERVER: str = "192.168.86.216:8848"
     NACOS_NAMESPACE: str = "d554e4e8-3a66-4661-ab17-75d6c7510eb3"
     SERVICE_NAME: str = "fastapi-service"
@@ -27,6 +27,15 @@ class Settings(BaseSettings):
         "dropout": 0.2,
         "sequence_length": 60
     }
+
+    DEEPSEEK_API_KEY: str
+    RABBITMQ_URL: str = "amqp://guest:guest@localhost/"
+    
+    # 新闻机器人配置
+    NEWS_UPDATE_INTERVAL: int = 300  # 5分钟
+    SENTIMENT_THRESHOLD: float = 0.8
+    GOOGLE_API_KEY: str
+    NEWS_SOURCES: List[str] = ["crypto", "blockchain", "bitcoin"]
     
     class Config:
         case_sensitive = True

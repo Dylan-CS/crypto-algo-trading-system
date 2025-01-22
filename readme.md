@@ -8,38 +8,38 @@ A sophisticated cryptocurrency trading platform that combines LSTM-based deep le
 ```
 crypto-quant-trading-system/
    ├── src/
-   │   ├── data/                  # Data Layer
-   │   │   ├── collectors/       # Data Collectors
-   │   │   ├── processors/      # Data Processors  
-   │   │   └── storage/         # Data Storage
+   │   ├── api/                 # API Layer
+   │   │   ├── endpoints/       # API Endpoints
+   │   │   └── routes/          # Route Definitions
    │   │
-   │   ├── core/                 # Core Functionality
+   │   ├── core/                # Core Functionality
    │   │   ├── config/          # Configuration Management
    │   │   ├── events/          # Event Handling
    │   │   └── utils/           # Utility Functions
    │   │
+   │   ├── data/                # Data Layer
+   │   │   ├── collectors/      # Data Collectors
+   │   │   ├── processors/      # Data Processors  
+   │   │   └── storage/         # Data Storage
+   │   │
    │   ├── models/              # Model Layer
-   │   │   ├── lstm/           # LSTM Models
-   │   │   └── evaluation/     # Model Evaluation
+   │   │   ├── evaluation/      # Model Evaluation
+   │   │   └── lstm/            # LSTM Models
    │   │
-   │   ├── trading/             # Trading Layer
-   │   │   ├── strategy/       # Trading Strategies
-   │   │   ├── execution/      # Trade Execution
-   │   │   └── risk/          # Risk Management
+   │   ├── services/            # Services Layer
+   │   │   ├── monitoring/      # Monitoring Services
+   │   │   └── nacos/           # Service Registration
    │   │
-   │   ├── api/                 # API Layer
-   │   │   ├── routes/         # Route Definitions
-   │   │   └── endpoints/      # API Endpoints
-   │   │
-   │   └── services/            # Services Layer
-   │       ├── nacos/          # Service Registration
-   │       └── monitoring/     # Monitoring Services
+   │   └── trading/             # Trading Layer
+   │       ├── execution/       # Trade Execution
+   │       ├── risk/            # Risk Management
+   │       └── strategy/        # Trading Strategies
+   │       └── newsbot.py       # New addition
    │
    ├── tests/                   # Tests Directory
    ├── docs/                    # Documentation
    └── scripts/                 # Deployment Scripts
-```
-## Key Features
+```## Key Features
 
 ### Machine Learning Components
 - **LSTM Price Prediction**: Advanced neural network architecture with:
@@ -54,18 +54,39 @@ crypto-quant-trading-system/
 - **Modular Design**: Separated concerns for trading, prediction, and system management
 
 ### Trading Features
-- **Real-time Data Processing**: Efficient market data fetching and analysis
-- **Risk Management**: Built-in strategies to minimize trading risks
-- **Automated Trading**: API-based trade execution system
-- **Performance Monitoring**: Tools for tracking system performance and trade outcomes
+- **Real-time Data Processing**: 
+  - Websocket integration for real-time market data
+  - Custom data normalization pipeline
+  - Multi-exchange data aggregation
+- **Risk Management**: 
+  - Position sizing algorithms
+  - Stop-loss automation
+  - Volatility-based risk adjustment
+  - Maximum drawdown controls
+- **Automated Trading**: 
+  - Multi-exchange API support
+  - Custom order types
+  - Smart order routing
+  - Order splitting algorithms
+- **Performance Monitoring**: 
+  - Real-time P&L tracking
+  - Risk metrics dashboard
+  - Performance attribution analysis
+  - Trading journal automation
 
-## Technical Requirements
+### Newsbot Integration
+- **Deepseek API**: Integration of Deepseek API for enhanced data collection.
+- **Google Search API**: A new package will be developed to integrate Google Search API, aimed at creating a newsbot.
+- **Event-Driven Data Pipeline**: The system will utilize an event-driven data pipeline for mid to low-frequency algorithmic trading, incorporating data pipeline, simple strategy code, newsbot, and pricing model.
 
+## Getting Started
+
+### Prerequisites
 - Python 3.7+
-- FastAPI >= 0.68.0
-- Pydantic >= 1.8.0
-- TensorFlow (for LSTM models)
-- Nacos Server (for service discovery)
+- Docker & Docker Compose
+- MongoDB
+- Redis (for caching)
+- GPU support (optional, for faster model training)
 
 ## Installation
 
@@ -155,3 +176,10 @@ For questions and support, please contact:
 - TensorFlow team for LSTM implementation
 - FastAPI framework developers
 - Nacos team for service discovery
+
+## Support & Community
+- Discord Channel: [Link]
+- Documentation Wiki: [Link]
+- Community Forums: [Link]
+- Regular Webinars: [Schedule]
+

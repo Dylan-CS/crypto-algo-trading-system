@@ -5,6 +5,9 @@ from core.event_publisher import EventPublisher
 from core.event_consumer import EventConsumer
 from api.endpoints import health, predictions
 import aio_pika
+from service.newsbot import NewsBot
+from data.pipeline import MarketDataPipeline
+from strategy.news_sentiment_strategy import NewsSentimentStrategy
 
 event_publisher = EventPublisher()
 event_consumer = EventConsumer()
@@ -23,13 +26,22 @@ def create_application() -> FastAPI:
         predictions.router,
         prefix=settings.API_V1_STR
     )
-    
+
     @app.on_event("startup")
     async def startup_event():
         await event_publisher.connect()
         await event_consumer.connect()
         await event_consumer.consume("your_queue_name", your_callback_function)
         await start_scheduler(app)
+        
+        # 初始化新组件
+        newsbot = NewsBot()
+        pipeline = MarketDataPipeline()
+        strategy = NewsSentimentStrategy(newsbot, pipeline)
+        
+        # 启动数据管道
+        await pipeline.start()
+        await pipeline.setup_handlers()
     
     @app.on_event("shutdown")
     async def shutdown_event():

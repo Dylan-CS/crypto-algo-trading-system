@@ -19,9 +19,11 @@ class NacosService:
         await self.register()
         
     async def register_services(self):
-        # 注册主服务
+        # Register main service
         await self.register_main_service()
-        # 注册数据收集服务
+        # Register data collection service
         await self.register_data_service()
-        # 注册预测服务
+        # Register prediction service
         await self.register_prediction_service()
+        # Register newsbot service
+        await self.register_newsbot_service()
