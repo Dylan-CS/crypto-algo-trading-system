@@ -1,8 +1,8 @@
-# Crypto Quant Trading System
+# Crypto Algo Trading System
 
 ## Overview
 
-A sophisticated cryptocurrency trading platform that combines LSTM-based deep learning with automated trading execution. The system leverages FastAPI for its microservice architecture and Nacos for service discovery, making it both scalable and maintainable.
+A high-performance cryptocurrency trading system that combines AI-driven analysis with automated execution. Built on a microservice architecture, it features LSTM neural networks for price prediction, real-time market data processing, and advanced risk management capabilities. The platform supports multiple exchanges and includes LLM-powered news sentiment analysis for comprehensive market insights.
 
 ## project structure
 ```
@@ -43,43 +43,53 @@ crypto-quant-trading-system/
 
 ## Key Features
 
-### Machine Learning Components
-- **LSTM Price Prediction**: Advanced neural network architecture with:
-  - Multi-layer LSTM implementation (4 layers with 50 units each)
-  - Dropout layers (0.2) for preventing overfitting
-  - Optimized for time-series prediction of cryptocurrency prices
-
-### System Architecture
-- **FastAPI Backend**: High-performance asynchronous API
-- **Nacos Integration**: Service discovery and dynamic configuration management
-- **Scheduled Tasks**: Automated health checks and service registration
-- **Modular Design**: Separated concerns for trading, prediction, and system management
-
-### Trading Features
-- **Real-time Data Processing**: 
-  - Websocket integration for real-time market data
-  - Custom data normalization pipeline
+### 1. Event-Driven Data Pipeline
+- **Data Integration Layer**:
+  - Real-time market data websocket streams
+  - Custom data normalization and preprocessing
   - Multi-exchange data aggregation
+- **Event Processing**:
+  - Event-driven architecture for real-time data handling
+  - Message queue integration for event distribution
+  - Scalable event processing framework
+
+### 2. Trading System
+- **Mid-Low Frequency Trading**:
+  - Statistical arbitrage strategies
+  - Mean reversion models
+  - Trend following implementations
 - **Risk Management**: 
   - Position sizing algorithms
   - Stop-loss automation
   - Volatility-based risk adjustment
   - Maximum drawdown controls
-- **Automated Trading**: 
-  - Multi-exchange API support
-  - Custom order types
+- **Order Management**:
   - Smart order routing
   - Order splitting algorithms
-- **Performance Monitoring**: 
-  - Real-time P&L tracking
-  - Risk metrics dashboard
-  - Performance attribution analysis
-  - Trading journal automation
+  - Multi-exchange execution
 
-### Newsbot Integration
-- **Deepseek API**: Integration of Deepseek API for enhanced data collection.
-- **Google Search API**: A new package will be developed to integrate Google Search API, aimed at creating a newsbot.
-- **Event-Driven Data Pipeline**: The system will utilize an event-driven data pipeline for mid to low-frequency algorithmic trading, incorporating data pipeline, simple strategy code, newsbot, and pricing model.
+### 3. Price Engine
+- **LSTM Price Prediction**: 
+  - Multi-layer LSTM implementation (4 layers with 50 units each)
+  - Dropout layers (0.2) for preventing overfitting
+  - Time-series prediction optimization
+- **Traditional Pricing Models**:
+  - Black-Scholes model implementation
+  - Volatility surface calibration
+  - Greeks calculation and risk metrics
+
+### 4. Newsbot Intelligence
+- **LLM Integration**:
+  - Deepseek API implementation for market analysis
+  - Custom prompt engineering for financial context
+- **Information Gathering**:
+  - Google Search API integration
+  - Real-time news aggregation
+  - Sentiment analysis pipeline
+- **Trading Signal Generation**:
+  - News-based event detection
+  - Sentiment-driven trading signals
+  - Market impact analysis
 
 ## Getting Started
 
