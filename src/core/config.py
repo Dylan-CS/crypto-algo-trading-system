@@ -28,13 +28,23 @@ class Settings(BaseSettings):
         "sequence_length": 60
     }
 
+    # DeepSeek Configuration
     DEEPSEEK_API_KEY: str
+    DEEPSEEK_BASE_URL: str = "https://api.deepseek.com"
+
+    # Google API Configuration
+    GOOGLE_API_KEY: str
+    GOOGLE_CSE_ID: str
+
+    # Model and Storage Configuration
+    BGE_MODEL_NAME: str = "BAAI/bge-large-zh-v1.5"
+    CHROMA_DB_PATH: str = "./data/chromadb"
+
     RABBITMQ_URL: str = "amqp://guest:guest@localhost/"
     
     # NewsBot Configuration
     NEWS_UPDATE_INTERVAL: int = 300  # 5 minutes
     SENTIMENT_THRESHOLD: float = 0.8
-    GOOGLE_API_KEY: str
     NEWS_SOURCES: List[str] = ["crypto", "blockchain", "bitcoin"]
     
     # Event Bus Configuration
@@ -55,11 +65,6 @@ class Settings(BaseSettings):
         "update_interval": 300,
         "max_news_age": 86400  # 24 hours
     }
-
-    # NewsBot Configuration
-    GOOGLE_CSE_ID: str
-    BGE_MODEL_NAME: str = "BAAI/bge-large-zh-v1.5"
-    CHROMA_DB_PATH: str = "./data/chromadb"
 
     class Config:
         case_sensitive = True

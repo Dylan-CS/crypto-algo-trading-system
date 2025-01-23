@@ -11,7 +11,7 @@ class EnhancedNewsBot:
     def __init__(self):
         self.deepseek_client = OpenAI(
             api_key=settings.DEEPSEEK_API_KEY,
-            base_url="https://api.deepseek.com"
+            base_url=settings.DEEPSEEK_BASE_URL
         )
         
         self.google_service = build(
