@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     SERVICE_IP: str = "192.168.86.216"
     SERVICE_PORT: int = 8000
     
-    # 新增配置
+    # Database and Exchange Configuration
     DATABASE_URL: str = "postgresql://user:password@localhost:5432/crypto_trading"
     EXCHANGE_API_KEY: str = "your_exchange_api_key_here"
     RISK_LIMITS: Dict = {
@@ -31,16 +31,16 @@ class Settings(BaseSettings):
     DEEPSEEK_API_KEY: str
     RABBITMQ_URL: str = "amqp://guest:guest@localhost/"
     
-    # 新闻机器人配置
-    NEWS_UPDATE_INTERVAL: int = 300  # 5分钟
+    # NewsBot Configuration
+    NEWS_UPDATE_INTERVAL: int = 300  # 5 minutes
     SENTIMENT_THRESHOLD: float = 0.8
     GOOGLE_API_KEY: str
     NEWS_SOURCES: List[str] = ["crypto", "blockchain", "bitcoin"]
     
-    # 新增事件总线配置
+    # Event Bus Configuration
     EVENT_BUS_CAPACITY: int = 1000
     
-    # 新增LSTM配置
+    # LSTM Model Configuration
     LSTM_CONFIG: dict = {
         "sequence_length": 60,
         "n_features": 1,
@@ -49,12 +49,17 @@ class Settings(BaseSettings):
         "dropout": 0.2
     }
     
-    # 新增新闻机器人配置
+    # NewsBot Configuration
     NEWSBOT_CONFIG: dict = {
         "sentiment_threshold": 0.8,
         "update_interval": 300,
-        "max_news_age": 86400
+        "max_news_age": 86400  # 24 hours
     }
+
+    # NewsBot Configuration
+    GOOGLE_CSE_ID: str
+    BGE_MODEL_NAME: str = "BAAI/bge-large-zh-v1.5"
+    CHROMA_DB_PATH: str = "./data/chromadb"
 
     class Config:
         case_sensitive = True

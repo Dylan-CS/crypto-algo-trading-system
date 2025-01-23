@@ -8,6 +8,7 @@ import aio_pika
 from service.newsbot import NewsBot
 from data.pipeline import MarketDataPipeline
 from strategy.news_sentiment_strategy import NewsSentimentStrategy
+from service.enhanced_newsbot import EnhancedNewsBot
 
 event_publisher = EventPublisher()
 event_consumer = EventConsumer()
@@ -34,12 +35,12 @@ def create_application() -> FastAPI:
         await event_consumer.consume("your_queue_name", your_callback_function)
         await start_scheduler(app)
         
-        # 初始化新组件
-        newsbot = NewsBot()
+        # Initialize new components
+        newsbot = EnhancedNewsBot()
         pipeline = MarketDataPipeline()
         strategy = NewsSentimentStrategy(newsbot, pipeline)
         
-        # 启动数据管道
+        # Start data pipeline
         await pipeline.start()
         await pipeline.setup_handlers()
     
